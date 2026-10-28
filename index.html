@@ -71,6 +71,7 @@
       color: #244d36;
       font-size: clamp(16px, 3vw, 24px);
       font-weight: bold;
+      line-height: 1.25;
       overflow-wrap: anywhere;
     }
   </style>
@@ -81,43 +82,30 @@
 
     <svg viewBox="0 0 500 500" role="img" aria-label="Интерактивная ромашка">
 
-      <!-- Верхний лепесток -->
-      <g class="petal" data-text="Света"
-         transform="translate(250 250) rotate(0) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(0) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#fff0a8"></ellipse>
       </g>
 
-      <!-- Верхний правый лепесток -->
-      <g class="petal" data-text="Марина"
-         transform="translate(250 250) rotate(60) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(60) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#ffd6df"></ellipse>
       </g>
 
-      <!-- Нижний правый лепесток -->
-      <g class="petal" data-text="у Вали и так вход и премы, отстаньте"
-         transform="translate(250 250) rotate(120) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(120) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#e2d5ff"></ellipse>
       </g>
 
-      <!-- Нижний лепесток -->
-      <g class="petal" data-text="ты ошибся и попал в Черешню"
-         transform="translate(250 250) rotate(180) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(180) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#cdeaff"></ellipse>
       </g>
 
-      <!-- Нижний левый лепесток -->
-      <g class="petal" data-text="Маша"
-         transform="translate(250 250) rotate(240) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(240) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#ffd9b8"></ellipse>
       </g>
 
-      <!-- Верхний левый лепесток -->
-      <g class="petal" data-text="Сходи скушай конфетку"
-         transform="translate(250 250) rotate(300) translate(0 -145)">
+      <g class="petal" transform="translate(250 250) rotate(300) translate(0 -145)">
         <ellipse cx="0" cy="0" rx="58" ry="125" fill="#d6f0c5"></ellipse>
       </g>
 
-      <!-- Серединка ромашки -->
       <circle
         class="center"
         cx="250"
@@ -133,12 +121,33 @@
   </div>
 
   <script>
+    const messages = [
+      "Света",
+      "Марина",
+      "у Вали и так вход и премы, отстаньте",
+      "ты ошибся и попал в Черешню",
+      "Маша",
+      "сходи съешь конфетку",
+      "Нина",
+      "Ксюша",
+      "Ася",
+      "ты лапочка! самый лучший и у тебя всё получится! жмай ещё!"
+    ];
+
     const petals = document.querySelectorAll(".petal");
     const message = document.getElementById("message");
 
+    let messageIndex = 0;
+
     petals.forEach(function (petal) {
       petal.addEventListener("click", function () {
-        message.textContent = petal.dataset.text;
+        message.textContent = messages[messageIndex];
+
+        messageIndex++;
+
+        if (messageIndex >= messages.length) {
+          messageIndex = 0;
+        }
       });
     });
   </script>
